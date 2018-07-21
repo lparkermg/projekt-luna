@@ -40,6 +40,7 @@ public class PlayerController : ManagedObjectBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _levelManager = managers.GetComponent<LevelManager>();
         _graphicsRenderer.sprite = _inFairyForm ? _fairyForm : _humanForm;
+        _rb.gravityScale = _inFairyForm ? 0.0f : 1.0f;
         _currentPlayer = ReInput.players.GetPlayer(0);
     }
 
