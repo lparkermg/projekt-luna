@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // Core Update loop data.
-    private ManagedObjectBehaviour[] _currentObjects;
+    [SerializeField] private ManagedObjectBehaviour[] _currentObjects;
     private bool _hasLoadedObjects = false;
     private GameObject _managers;
 	// Use this for initialization
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public void RefreshObjects()
     {
         _hasLoadedObjects = false;
-        _currentObjects = GetComponents<ManagedObjectBehaviour>();
+        _currentObjects = FindObjectsOfType<ManagedObjectBehaviour>();
         for (var i = 0; i < _currentObjects.Length; i++)
         {
             _currentObjects[i].StartMe(_managers);

@@ -31,14 +31,14 @@ public class PlayerController : ManagedObjectBehaviour
     private Rigidbody2D _rb;
 
     //External Forces
-    //private WorldManager _worldManager;
+    private LevelManager _levelManager;
 
     #region Start and Update replacements
     public override void StartMe(GameObject managers)
     {
         _graphicsRenderer = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
-        //_worldManager = managers.GetComponent<WorldManager>();
+        _levelManager = managers.GetComponent<LevelManager>();
         _graphicsRenderer.sprite = _inFairyForm ? _fairyForm : _humanForm;
         _currentPlayer = ReInput.players.GetPlayer(0);
     }
@@ -89,6 +89,13 @@ public class PlayerController : ManagedObjectBehaviour
             {
                 _rb.AddForce(new Vector2(_humanMovement, 0.0f),ForceMode2D.Force);
             }
+        }
+
+        if (_currentPlayer.GetButtonDown("SwapForm"))
+        {
+            if(!_inFairyForm)
+                _levelManager.SwapLevels();
+            SwitchForm();
         }
     }
 
