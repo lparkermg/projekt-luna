@@ -7,10 +7,11 @@ public class GameManager : MonoBehaviour
     // Core Update loop data.
     private ManagedObjectBehaviour[] _currentObjects;
     private bool _hasLoadedObjects = false;
-
+    private GameObject _managers;
 	// Use this for initialization
 	void Start ()
 	{
+	    _managers = gameObject;
 	    RefreshObjects();
 	}
 	
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
         _currentObjects = GetComponents<ManagedObjectBehaviour>();
         for (var i = 0; i < _currentObjects.Length; i++)
         {
-            _currentObjects[i].StartMe();
+            _currentObjects[i].StartMe(_managers);
         }
 
         _hasLoadedObjects = true;
