@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using TMPro;
 
 public class PlayerController : ManagedObjectBehaviour
 {
+    [SerializeField] private Characters _character;
+
     //Input
     private Player _currentPlayer;
     private bool _isControllable = true;
@@ -68,6 +71,10 @@ public class PlayerController : ManagedObjectBehaviour
         _isControllable = isControllable;
     }
 
+    public bool IsSameCharacter(Characters character)
+    {
+        return _character == character;
+    }
     #endregion
 
     #region Private Logic
